@@ -1,11 +1,25 @@
 const User = require("./modal")
 
-const usernameUnique = (req, res, next) => {
-    
+const usernameExists = async (req, res, next) => {
+    const { username } = req.body
+    const existingUser = await User.checkUsernameExists(username)
+    if (existingUser) {
+        req.user = existingUser
+        next()
+    } else {
+        next({ status: 404, message: "that username doesnt exist" })
+    }
 }
 
-const usernameExists = (req, res, next) => {
-
+const usernameUnique = async (req, res, next) => {
+    const { username } = req.body
+    const existingUser = await User.checkUsernameExists(username)
+    if (existingUser) {
+        next({ status: 404, message: "that username already exists" })
+    } else {
+        req.user = req.body
+        next()
+    }
 }
 
 module.exports = {
