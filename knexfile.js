@@ -1,17 +1,26 @@
 // Update with your config settings.
-
+const shared = {
+  client: 'sqlite3',
+  useNullAsDefault: true,
+  migrations: {
+    directory: './data/migrations',
+  },
+  seeds: {
+    directory: './data/seeds',
+  },
+}
 module.exports = {
-
   development: {
-    client: 'sqlite3',
+    ...shared,
     connection: {
       filename: './data/users.db3'
     },
-    migrations: {
-      directory: "./data/migrations"
-    },
-    seeds: {
-      directory: "./data/seeds"
+  },
+  
+  testing: {
+    ...shared,
+    connection: {
+      filename: './data/users.db3'
     },
   },
 

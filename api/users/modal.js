@@ -1,5 +1,7 @@
 const db = require("../../data/dbConfig")
 
+const getAll = () => db('users')
+
 const add = user => {
     return null
 }
@@ -8,4 +10,11 @@ const checkUsernameExists = username => {
 }
 const checkUsernameUnique = username => {
     return null
+}
+
+module.exports = {
+    getAll,
+    add,
+    checkUsernameExists,
+    checkUsernameUnique
 }

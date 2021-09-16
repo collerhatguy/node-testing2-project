@@ -1,10 +1,12 @@
+const { usernameUnique, usernameExists } = require("./middleware")
+
 const router = require("express").Router()
 
-router.post("/register", (req, res, next) => {
+router.post("/register", usernameUnique, (req, res, next) => {
     res.end()
 })
 
-router.post("/login", (req, res, next) => {
+router.post("/login", usernameExists, (req, res, next) => {
     res.end()
 })
 
